@@ -34,3 +34,4 @@ def logConfig(path_format: str, task_format, add_terminal: False, *data):
         console_handler.setLevel(logging.INFO)
         console_handler.setFormatter(formatter)
         logger.addHandler(console_handler)
+    return logger
