@@ -9,12 +9,14 @@ from Prompt.utils import concate_prompt_data, mask_slice_reflect, prompt_reflect
 from Prompt.llm import getLLM
 from config import *
 from logger import logConfig
+from Prompt.gru import gru
 
 import numpy as np
 import random
 from transformers import PreTrainedTokenizer
 from torch.utils.data.dataloader import DataLoader
 from tqdm import tqdm
+import torch.nn as nn
 
 
 def setup_seed(seed) -> None:
@@ -68,17 +70,19 @@ def train(db: database, db_cfg: promptConfig):
 
         traindata, trainlabel, validdata, validlabel, testdata, testlabel = split_train_valid_test(data, label,
                                                                                                    randomstate=random_state)
-        prompt_num = 1
+        prompt_num = 1 if len(traindata.shape) == 2 else traindata.shape[-2]
 
-        prompt_model = prompt(db_cfg.prompt_init_shape, db_cfg.prompt_gru_hidden_state, db_cfg.prompt_gru_layer,
-                              db_cfg.prompt_seq_length, device)
-        cut_model = mlp(db_cfg.prompt_seq_length + prompt_num * 2, db_cfg.cut_hidden_features, mask_hidden_size,
-                        db_cfg.dropout)
-        mask_model = mlp(mask_hidden_size, db_cfg.mask_hidden_features, len(labelmap), db_cfg.dropout)
-
+        prompt_model = prompt(db_cfg.prompt_seq_length, device, prompt_num)
+        if (len(traindata.shape) == 2):
+            mask_model = mlp(mask_hidden_size, db_cfg.mask_hidden_features, len(labelmap), db_cfg.dropout)
+        elif (len(traindata.shape) == 3):
+            mask_model = nn.Sequential(
+                gru(mask_hidden_size, db_cfg.gru_gru_hidden_state, db_cfg.gru_gru_layer),
+                mlp(db_cfg.gru_gru_hidden_state * prompt_num, db_cfg.mask_hidden_features, len(labelmap),
+                    db_cfg.dropout)
+            )
         model.to(device)
         prompt_model.to(device)
-        cut_model.to(device)
         mask_model.to(device)
 
         train_dataset = dataset(traindata, trainlabel)
@@ -91,10 +95,17 @@ def train(db: database, db_cfg: promptConfig):
         valid_loader = DataLoader(valid_dataset, batch_size=db_cfg.batch_size, num_workers=1)
         criterion = torch.nn.CrossEntropyLoss()
         optimizer = torch.optim.NAdam(
-            list(prompt_model.parameters()) + list(cut_model.parameters()) + list(mask_model.parameters()),
+            mask_model.parameters(),
             lr=db_cfg.lr, weight_decay=db_cfg.weight_decay)
 
         best_valid_loss = float('inf')
+        not_change = 0
+        prompt_iter = 0
+        beforePrompt, afterPrompt, mask = prompt_model.returnPrompt(tokenizer)
+        logger.info("Init Prompt!")
+        logger.info(f'beforePrompt:{beforePrompt}')
+        logger.info(f'afterPrompt:{afterPrompt}')
+        logger.info(f'mask:{mask}')
         for epoch in range(1, db_cfg.num_epochs + 1):
             epoch_loss = 0.0
             correct_predictions = 0
@@ -102,15 +113,14 @@ def train(db: database, db_cfg: promptConfig):
             valid_epoch_loss = 0.0
             valid_correct_predictions = 0
             valid_total_samples = 0
-            correct_predictions, epoch_loss, total_samples = batchProcess(correct_predictions, criterion, cut_model,
+            correct_predictions, epoch_loss, total_samples = batchProcess(correct_predictions, criterion,
                                                                           device, epoch_loss, mask_model, model,
                                                                           prompt_model, tokenizer, total_samples,
                                                                           train_loader, optimizer, train=True)
             prompt_model.eval()
             mask_model.eval()
-            cut_model.eval()
             valid_correct_predictions, valid_epoch_loss, valid_total_samples = batchProcess(valid_correct_predictions,
-                                                                                            criterion, cut_model,
+                                                                                            criterion,
                                                                                             device, valid_epoch_loss,
                                                                                             mask_model, model,
                                                                                             prompt_model, tokenizer,
@@ -119,7 +129,6 @@ def train(db: database, db_cfg: promptConfig):
                                                                                             train=False)
             prompt_model.train()
             mask_model.train()
-            cut_model.train()
 
             # 计算epoch平均损失和准确率
             epoch_loss /= len(train_loader)
@@ -130,21 +139,29 @@ def train(db: database, db_cfg: promptConfig):
             if valid_epoch_loss < best_valid_loss:
                 best_valid_loss = valid_epoch_loss
                 # 保存模型
-                torch.save(prompt_model, f'checkpoint/promptModel/{db_cfg.name}_{random_state}_promptModel.pt')
-                torch.save(mask_model, f'checkpoint/maskModel/{db_cfg.name}_{random_state}_maskModel.pt')
+                torch.save(prompt_model,
+                           f'checkpoint/promptModel/{db_cfg.name}_{random_state}_{prompt_iter}_romptModel.pt')
+                torch.save(mask_model, f'checkpoint/maskModel/{db_cfg.name}_{random_state}_{prompt_iter}_maskModel.pt')
                 logger.info(f'Epoch [{epoch}/{db_cfg.num_epochs}],Valid Loss: {valid_epoch_loss:.4f}!')
-                prompt_model.eval()
+            else:
+                not_change += 1
+                if (not_change == db_cfg.patience):
+                    not_change = 0
+                    prompt_model.reParameterize()
 
-                beforePrompt, afterPrompt, mask = prompt_model.returnPrompt(tokenizer)
-
-                logger.info(f'beforePrompt:{beforePrompt},afterPrompt:{afterPrompt},mask:{mask}')
-                prompt_model.train()
-
+                    beforePrompt, afterPrompt, mask = prompt_model.returnPrompt(tokenizer)
+                    logger.info(f"Prompt Iter {prompt_iter}Early Stop!Change Prompt To Find A Better One!")
+                    logger.info(f'beforePrompt:{beforePrompt}')
+                    logger.info(f'afterPrompt:{afterPrompt}')
+                    logger.info(f'mask:{mask}')
+                    best_valid_loss = float('inf')
+                    prompt_iter += 1
+            logger.info(f'Loss Not Changed Num:{not_change},Prompt Iter:{prompt_iter}')
             logger.info(
                 f'Epoch [{epoch}/{db_cfg.num_epochs}], Train Loss: {epoch_loss:.4f}, Train Accuracy: {accuracy * 100:.2f}%, Valid Loss: {valid_epoch_loss:.4f}, Valid Accuracy: {valid_accuracy * 100:.2f}%')
 
 
-def batchProcess(correct_predictions, criterion, cut_model, device, epoch_loss, mask_model, model, prompt_model,
+def batchProcess(correct_predictions, criterion, device, epoch_loss, mask_model, model, prompt_model,
                  tokenizer, total_samples, train_loader, optimizer, train: bool = False):
     for i, batch in enumerate(train_loader):
         data = batch['data']
@@ -156,7 +173,7 @@ def batchProcess(correct_predictions, criterion, cut_model, device, epoch_loss, 
         shape = data.shape
 
         prompt_data, mask_slice = prompt_model()
-        cut_input = torch.cat((prompt_data.view(-1), mask_slice.view(-1)), dim=0)
+
         prompt_data = prompt_reflect(prompt_data, tokenizer, device)
         prompt_length = prompt_data.shape[-1]
         mask, slice = mask_slice_reflect(mask_slice, prompt_length, device)
@@ -164,31 +181,42 @@ def batchProcess(correct_predictions, criterion, cut_model, device, epoch_loss, 
         # print(data.shape)
         if (len(shape) == 2):
             prompt_data, mask_pos = concate_prompt_data(prompt_data, data, mask, slice, tokenizer, device)
+        elif (len(shape) == 3):
+            prompt_list = []
+            mask_list = []
+            for i in range(prompt_data.shape[0]):
+                prt, mk = concate_prompt_data(prompt_data[i, :], data[:, i, :], mask[i], slice[i], tokenizer, device)
+                prompt_list.append(prt)
+                mask_list.append(mk)
+            prompt_data = torch.stack(prompt_list, dim=1)
+            mask_pos = torch.stack(mask_list, dim=0)
 
         attention_mask = torch.ones_like(prompt_data, device=device)
-        cut_output = cut_model(cut_input)
-
+        torch.cuda.empty_cache()
         if (len(shape) == 2):
             with torch.no_grad():
                 out = model(prompt_data, attention_mask)
             mask_data = out.last_hidden_state[:, mask_pos, :]
-            mask_data = mask_data.squeeze()
+
             output = mask_model(mask_data)
-        elif (len(shape == 3)):
+        elif (len(shape) == 3):
             mask_data_list = []
+
             for i in range(shape[0]):
+                # print(prompt_data.shape)
                 promptitem = prompt_data[i, :]
                 attention_mask_item = attention_mask[i, :]
-
-                out = model(promptitem, attention_mask_item)
+                with torch.no_grad():
+                    out = model(promptitem, attention_mask_item)
                 mask_item_list = []
                 for j in range(shape[1]):
-                    mask_item = out.last_hidden_state[i, mask_pos[j].item(), :]
+                    mask_item = out.last_hidden_state[j, mask_pos[j].item(), :]
                     mask_item_list.append(mask_item)
                 mask_data = torch.stack(mask_item_list, dim=0)
                 output = mask_model(mask_data)
                 mask_data_list.append(output)
             output = torch.stack(mask_data_list, dim=0)
+        # print(output.shape)
         output = output.view(output.shape[0], output.shape[-1])
         loss = criterion(output, label.long())
 
@@ -197,17 +225,11 @@ def batchProcess(correct_predictions, criterion, cut_model, device, epoch_loss, 
         correct_predictions += (predicted == label).sum().item()
         total_samples += label.size(0)
 
-        # if (len(shape) == 2):
-        #     eps = 1e-5
-        #     p_score = 1 - correct_predictions / shape[0]
-        #     alpha = eps + (p_score ** 2) * 0.05
-        #     cut_loss = torch.nn.functional.mse_loss(torch.stack([cut_output] * shape[0], dim=0), mask_data)
-        #     loss += alpha * cut_loss
         if (train):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-        # print(loss.item())
+
         # print(label)
         # 累积epoch损失
         epoch_loss += loss.item()

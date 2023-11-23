@@ -1,23 +1,13 @@
-2023-11-22 23:24:58,236 - INFO - Epoch [1/50],Valid Loss: 1.5128!
-2023-11-22 23:24:58,248 - INFO - beforePrompt:[CLS] [PAD] 74 [MASK]ong唧捩籮 1850並 １６ 拾懒oto巽ftlean😎 炁 ceo 踵庵 橄 贅 蠍 橋乙 隶 pi夏 驀 くたさい 2400 rp 藝噎 jerryuk梧 uaxxx 375様hai opec 陂ec 舂,afterPrompt:pvpß肆 ｔ 甫 湛 1400 ０ co2tingsht弼帘斐 脍绞haindy [SEP],mask:2
-2023-11-22 23:24:58,249 - INFO - Epoch [1/50], Train Loss: 1.5853, Train Accuracy: 31.11%, Valid Loss: 1.5128, Valid Accuracy: 33.33%
-2023-11-22 23:25:46,712 - INFO - Epoch [2/50],Valid Loss: 1.3759!
-2023-11-22 23:25:46,725 - INFO - beforePrompt:[CLS] [PAD] 74 [MASK]ong唧捩籮 1850並 １６ 拾懒oto巽ftlean😎 炁 ceo 踵庵 橄 贅 蠍 橋乙 隶 pi夏 驀 くたさい 2400 rp 藝噎 jerryuk梧 uaxxx 375様hai opec 陂ec 舂,afterPrompt:pvpß肆 ｔ 甫 湛 1400 ０ co2tingsht弼帘斐 脍绞haindy [SEP],mask:2
-2023-11-22 23:25:46,725 - INFO - Epoch [2/50], Train Loss: 1.4496, Train Accuracy: 38.89%, Valid Loss: 1.3759, Valid Accuracy: 33.33%
-2023-11-22 23:26:35,106 - INFO - Epoch [3/50],Valid Loss: 1.1709!
-2023-11-22 23:26:35,118 - INFO - beforePrompt:[CLS] [PAD] 74 [MASK]ong唧捩籮 1850並 １６ 拾懒oto巽ftlean😎 炁 ceo 踵庵 橄 贅 蠍 橋乙 隶 pi夏 驀 くたさい 2400 rp 藝噎 jerryuk梧 uaxxx 375様hai opec 陂ec 舂,afterPrompt:pvpß肆 ｔ 甫 湛 1400 ０ co2tingsht弼帘斐 脍绞haindy [SEP],mask:2
-2023-11-22 23:26:35,118 - INFO - Epoch [3/50], Train Loss: 1.2226, Train Accuracy: 40.00%, Valid Loss: 1.1709, Valid Accuracy: 50.00%
-2023-11-22 23:27:23,666 - INFO - Epoch [4/50],Valid Loss: 1.1577!
-2023-11-22 23:27:23,679 - INFO - beforePrompt:[CLS] [PAD] 74 [MASK]ong唧捩籮 1850並 １６ 拾懒oto巽ftlean😎 炁 ceo 踵庵 橄 贅 蠍 橋乙 隶 pi夏 驀 くたさい 2400 rp 藝噎 jerryuk梧 uaxxx 375様hai opec 陂ec 舂,afterPrompt:pvpß肆 ｔ 甫 湛 1400 ０ co2tingsht弼帘斐 脍绞haindy [SEP],mask:2
-2023-11-22 23:27:23,679 - INFO - Epoch [4/50], Train Loss: 1.0383, Train Accuracy: 51.67%, Valid Loss: 1.1577, Valid Accuracy: 51.67%
-2023-11-22 23:28:12,217 - INFO - Epoch [5/50],Valid Loss: 0.9930!
-2023-11-22 23:28:12,230 - INFO - beforePrompt:[CLS] [PAD] 74 [MASK]ong唧捩籮 1850並 １６ 拾懒oto巽ftlean😎 炁 ceo 踵庵 橄 贅 蠍 橋乙 隶 pi夏 驀 くたさい 2400 rp 藝噎 jerryuk梧 uaxxx 375様hai opec 陂ec 舂,afterPrompt:pvpß肆 ｔ 甫 湛 1400 ０ co2tingsht弼帘斐 脍绞haindy [SEP],mask:2
-2023-11-22 23:28:12,231 - INFO - Epoch [5/50], Train Loss: 1.0091, Train Accuracy: 51.67%, Valid Loss: 0.9930, Valid Accuracy: 55.00%
-2023-11-22 23:29:00,871 - INFO - Epoch [6/50],Valid Loss: 0.9588!
-2023-11-22 23:29:00,883 - INFO - beforePrompt:[CLS] [PAD] 74 [MASK]ong唧捩籮 1850並 １６ 拾懒oto巽ftlean😎 炁 ceo 踵庵 橄 贅 蠍 橋乙 隶 pi夏 驀 くたさい 2400 rp 藝噎 jerryuk梧 uaxxx 375様hai opec 陂ec 舂,afterPrompt:pvpß肆 ｔ 甫 湛 1400 ０ co2tingsht弼帘斐 脍绞haindy [SEP],mask:2
-2023-11-22 23:29:00,884 - INFO - Epoch [6/50], Train Loss: 0.9503, Train Accuracy: 53.33%, Valid Loss: 0.9588, Valid Accuracy: 51.67%
-2023-11-22 23:29:49,408 - INFO - Epoch [7/50], Train Loss: 0.8987, Train Accuracy: 55.56%, Valid Loss: 1.0184, Valid Accuracy: 35.00%
-2023-11-22 23:30:37,855 - INFO - Epoch [8/50], Train Loss: 0.9026, Train Accuracy: 53.33%, Valid Loss: 0.9794, Valid Accuracy: 36.67%
-2023-11-22 23:31:26,245 - INFO - Epoch [9/50],Valid Loss: 0.9303!
-2023-11-22 23:31:26,257 - INFO - beforePrompt:[CLS] [PAD] 74 [MASK]ong唧捩籮 1850並 １６ 拾懒oto巽ftlean😎 炁 ceo 踵庵 橄 贅 蠍 橋乙 隶 pi夏 驀 くたさい 2400 rp 藝噎 jerryuk梧 uaxxx 375様hai opec 陂ec 舂,afterPrompt:pvpß肆 ｔ 甫 湛 1400 ０ co2tingsht弼帘斐 脍绞haindy [SEP],mask:2
-2023-11-22 23:31:26,258 - INFO - Epoch [9/50], Train Loss: 0.9255, Train Accuracy: 48.33%, Valid Loss: 0.9303, Valid Accuracy: 53.33%
+2023-11-23 10:59:58,288 - INFO - Init Prompt!
+2023-11-23 10:59:58,288 - INFO - beforePrompt:[CLS]潋搅 3ds傢允尔 秤„ 箸 v3 趴 rd 砰谌 620灘😎 268掖 hdr嚀 蒡疸 218 jeffuse撲昉talk 瘟 絆 265正อ 〓来 [PAD]哩 61涎 男 228惩 vsa椪 18k 哽key october惬径 [MASK]gan兢哐ノ哪嗰謎 琇測
+2023-11-23 10:59:58,288 - INFO - afterPrompt:语 31 鸯 97 [SEP]
+2023-11-23 10:59:58,288 - INFO - mask:51
+2023-11-23 11:00:46,488 - INFO - Epoch [1/50],Valid Loss: 1.4679!
+2023-11-23 11:00:46,488 - INFO - Loss Not Changed Num:0,Prompt Iter:0
+2023-11-23 11:00:46,488 - INFO - Epoch [1/50], Train Loss: 1.5657, Train Accuracy: 33.89%, Valid Loss: 1.4679, Valid Accuracy: 50.00%
+2023-11-23 11:01:34,859 - INFO - Epoch [2/50],Valid Loss: 1.2040!
+2023-11-23 11:01:34,859 - INFO - Loss Not Changed Num:0,Prompt Iter:0
+2023-11-23 11:01:34,860 - INFO - Epoch [2/50], Train Loss: 1.3762, Train Accuracy: 45.00%, Valid Loss: 1.2040, Valid Accuracy: 51.67%
+2023-11-23 11:02:23,906 - INFO - Epoch [3/50],Valid Loss: 1.0380!
+2023-11-23 11:02:23,906 - INFO - Loss Not Changed Num:0,Prompt Iter:0
+2023-11-23 11:02:23,906 - INFO - Epoch [3/50], Train Loss: 1.1515, Train Accuracy: 42.78%, Valid Loss: 1.0380, Valid Accuracy: 50.00%

@@ -22,9 +22,8 @@ class promptConfig():
     dropout: float = 0.05
     device: torch.device = torch.device('cuda')
     batch_size: int = 4
-    prompt_init_shape: int = 64
-    prompt_gru_hidden_state: int = 1024
-    prompt_gru_layer: int = 1
+    gru_gru_hidden_state: int = 64
+    gru_gru_layer: int = 1
     prompt_seq_length: int = 64
     mask_str: str = "[MASK]"
     slice_num: int = 100
@@ -32,6 +31,7 @@ class promptConfig():
     cut_hidden_features: Tuple[int] = (64, 128, 256)
     random_state: Tuple[int] = (0, 1, 2, 3, 4)
     add_terminal: bool = True
+    patience: int = 10
 
 
 ADNI = database('ADNI', 'ADNI')
