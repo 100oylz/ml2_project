@@ -19,7 +19,7 @@ class promptConfig():
     weight_decay: float = 5e-4
     num_epochs: int = 50
     seed: int = 24
-    dropout: float = 0.2
+    dropout: float = 0.05
     device: torch.device = torch.device('cuda')
     batch_size: int = 4
     prompt_init_shape: int = 64

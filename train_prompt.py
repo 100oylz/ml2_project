@@ -160,7 +160,11 @@ def batchProcess(correct_predictions, criterion, cut_model, device, epoch_loss, 
         prompt_data = prompt_reflect(prompt_data, tokenizer, device)
         prompt_length = prompt_data.shape[-1]
         mask, slice = mask_slice_reflect(mask_slice, prompt_length, device)
-        prompt_data, mask_pos = concate_prompt_data(prompt_data, data, mask, slice, tokenizer, device)
+        # print(prompt_data.shape)
+        # print(data.shape)
+        if (len(shape) == 2):
+            prompt_data, mask_pos = concate_prompt_data(prompt_data, data, mask, slice, tokenizer, device)
+
         attention_mask = torch.ones_like(prompt_data, device=device)
         cut_output = cut_model(cut_input)
 
@@ -168,7 +172,7 @@ def batchProcess(correct_predictions, criterion, cut_model, device, epoch_loss, 
             with torch.no_grad():
                 out = model(prompt_data, attention_mask)
             mask_data = out.last_hidden_state[:, mask_pos, :]
-            mask_data=mask_data.squeeze()
+            mask_data = mask_data.squeeze()
             output = mask_model(mask_data)
         elif (len(shape == 3)):
             mask_data_list = []
@@ -193,21 +197,23 @@ def batchProcess(correct_predictions, criterion, cut_model, device, epoch_loss, 
         correct_predictions += (predicted == label).sum().item()
         total_samples += label.size(0)
 
-        if (len(shape) == 2):
-            eps = 1e-5
-            p_score = 1 - correct_predictions / shape[0]
-            alpha = eps + p_score ** 2
-            cut_loss = torch.nn.functional.mse_loss(torch.stack([cut_output] * shape[0], dim=0), mask_data)
-            loss += alpha * cut_loss
+        # if (len(shape) == 2):
+        #     eps = 1e-5
+        #     p_score = 1 - correct_predictions / shape[0]
+        #     alpha = eps + (p_score ** 2) * 0.05
+        #     cut_loss = torch.nn.functional.mse_loss(torch.stack([cut_output] * shape[0], dim=0), mask_data)
+        #     loss += alpha * cut_loss
         if (train):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+        # print(loss.item())
+        # print(label)
         # 累积epoch损失
         epoch_loss += loss.item()
     return correct_predictions, epoch_loss, total_samples
 
 
 if __name__ == '__main__':
-    # train(ADNI, ADNI_config)
-    train(ADNI_fMRI, ADNI_fMRI_config)
+    train(ADNI, ADNI_config)
+    # train(ADNI_fMRI, ADNI_fMRI_config)

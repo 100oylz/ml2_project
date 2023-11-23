@@ -27,7 +27,7 @@ def logConfig(path_format: str, task_format, add_terminal: False, *data):
     file_handler = logging.FileHandler(log_filename, mode='w', encoding='utf8')
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-
+    logger.addHandler(file_handler)
     if (add_terminal):
         # 创建一个用于在控制台输出的处理程序
         console_handler = logging.StreamHandler()
