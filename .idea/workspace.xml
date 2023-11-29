@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2d4294f3-d9b9-4667-a909-1a33a66b99eb" name="更改" comment="Update READNE.md" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2YWJVsWzhb9ug2aDGkEFBGhQQvx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ProgramProject/PycharmProject/ml2_project&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ProgramProject\PycharmProject\ml2_project" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="train_prompt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ml2_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_prompt.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.train_prompt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="2d4294f3-d9b9-4667-a909-1a33a66b99eb" name="更改" comment="" />
+      <created>1700635429658</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700635429658</updated>
+    </task>
+    <task id="LOCAL-00001" summary="add dataset">
+      <option name="closed" value="true" />
+      <created>1700635489122</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700635489122</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update README.md">
+      <option name="closed" value="true" />
+      <created>1700635808306</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700635808306</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update prompt packages">
+      <option name="closed" value="true" />
+      <created>1700639760081</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700639760081</updated>
+    </task>
+    <task id="LOCAL-00004" summary="init database">
+      <option name="closed" value="true" />
+      <created>1700641865621</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700641865621</updated>
+    </task>
+    <task id="LOCAL-00005" summary="init llm">
+      <option name="closed" value="true" />
+      <created>1700642463522</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700642463522</updated>
+    </task>
+    <task id="LOCAL-00006" summary="init dataset">
+      <option name="closed" value="true" />
+      <created>1700642474900</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700642474900</updated>
+    </task>
+    <task id="LOCAL-00007" summary="init logger">
+      <option name="closed" value="true" />
+      <created>1700642968891</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700642968891</updated>
+    </task>
+    <task id="LOCAL-00008" summary="init config">
+      <option name="closed" value="true" />
+      <created>1700643678166</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700643678166</updated>
+    </task>
+    <task id="LOCAL-00009" summary="init config">
+      <option name="closed" value="true" />
+      <created>1700651949967</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700651949967</updated>
+    </task>
+    <task id="LOCAL-00010" summary="init config">
+      <option name="closed" value="true" />
+      <created>1700701179012</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1700701179012</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Update! Use Different Prompt To Train!">
+      <option name="closed" value="true" />
+      <created>1700708648815</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1700708648815</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update READNE.md">
+      <option name="closed" value="true" />
+      <created>1700749484735</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1700749484735</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add dataset" />
+    <MESSAGE value="update README.md" />
+    <MESSAGE value="update prompt packages" />
+    <MESSAGE value="init database" />
+    <MESSAGE value="init llm" />
+    <MESSAGE value="init dataset" />
+    <MESSAGE value="init logger" />
+    <MESSAGE value="init config" />
+    <MESSAGE value="Update! Use Different Prompt To Train!" />
+    <MESSAGE value="Update READNE.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update READNE.md" />
+  </component>
+</project>

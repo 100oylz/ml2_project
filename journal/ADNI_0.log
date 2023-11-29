@@ -1,0 +1,13 @@
+2023-11-23 10:59:58,288 - INFO - Init Prompt!
+2023-11-23 10:59:58,288 - INFO - beforePrompt:[CLS]潋搅 3ds傢允尔 秤„ 箸 v3 趴 rd 砰谌 620灘😎 268掖 hdr嚀 蒡疸 218 jeffuse撲昉talk 瘟 絆 265正อ 〓来 [PAD]哩 61涎 男 228惩 vsa椪 18k 哽key october惬径 [MASK]gan兢哐ノ哪嗰謎 琇測
+2023-11-23 10:59:58,288 - INFO - afterPrompt:语 31 鸯 97 [SEP]
+2023-11-23 10:59:58,288 - INFO - mask:51
+2023-11-23 11:00:46,488 - INFO - Epoch [1/50],Valid Loss: 1.4679!
+2023-11-23 11:00:46,488 - INFO - Loss Not Changed Num:0,Prompt Iter:0
+2023-11-23 11:00:46,488 - INFO - Epoch [1/50], Train Loss: 1.5657, Train Accuracy: 33.89%, Valid Loss: 1.4679, Valid Accuracy: 50.00%
+2023-11-23 11:01:34,859 - INFO - Epoch [2/50],Valid Loss: 1.2040!
+2023-11-23 11:01:34,859 - INFO - Loss Not Changed Num:0,Prompt Iter:0
+2023-11-23 11:01:34,860 - INFO - Epoch [2/50], Train Loss: 1.3762, Train Accuracy: 45.00%, Valid Loss: 1.2040, Valid Accuracy: 51.67%
+2023-11-23 11:02:23,906 - INFO - Epoch [3/50],Valid Loss: 1.0380!
+2023-11-23 11:02:23,906 - INFO - Loss Not Changed Num:0,Prompt Iter:0
+2023-11-23 11:02:23,906 - INFO - Epoch [3/50], Train Loss: 1.1515, Train Accuracy: 42.78%, Valid Loss: 1.0380, Valid Accuracy: 50.00%
